@@ -2,6 +2,8 @@ import React from 'react';
 import logo from '../../assets/img/logo.png'
 import facebook from '../../assets/img/icons/facebook.png'
 import google from '../../assets/img/icons/google.png'
+import { StackNavigator } from "react-navigation";
+import Registrar from '../registrar/registrar'
 
 import {
   Text, Image, StyleSheet, Dimensions, ImageBackground, StatusBar, TouchableOpacity, Alert, View
@@ -80,7 +82,8 @@ const styles = StyleSheet.create({
 
 });
 
-const Main = () => (
+const Main = ({navigation}) => (
+  
   <ImageBackground
     source={{
       uri: 'https://s3-sa-east-1.amazonaws.com/rocketseat-cdn/background.png',
@@ -121,7 +124,7 @@ const Main = () => (
       />
     </View>
 
-    <Text style={styles.cadastrar1}>Ainda não é cadastrado?   <Text style={styles.cadastrar} >Clique Aqui</Text> </Text>
+    <Text style={styles.cadastrar1}>Ainda não é cadastrado?   <Text style={styles.cadastrar} onPress={() => navigation.navigate('Registrar') } >Clique Aqui</Text> </Text>
 
 
 
