@@ -3,7 +3,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 
 
-import Main from '~/pages/Main';
+import Main from '~/views/Main';
 
 
 
