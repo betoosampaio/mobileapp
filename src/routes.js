@@ -3,8 +3,9 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 
 
-import Main from './views/Main/index';
-import Registrar from './views/registrar/registrar';
+
+//Pages Home
+import Home from './views/home/Home';
 
 
 
@@ -12,7 +13,8 @@ import Registrar from './views/registrar/registrar';
 
 
 
-const Routes = createAppContainer(createSwitchNavigator({ Main, Registrar }));
+
+const Routes = createAppContainer(createSwitchNavigator({ Home }));
 
 
 
