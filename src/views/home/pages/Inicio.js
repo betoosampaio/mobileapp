@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, StatusBar, FlatList, ScrollView } from 'react-native'
+import { Text, SafeAreaView, View, StyleSheet, StatusBar, FlatList, ScrollView } from 'react-native'
 import { SearchBar } from 'react-native-elements';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Card } from "react-native-elements";
@@ -71,7 +71,7 @@ const styles = StyleSheet.create({
   container: {
     alignItems: 'center',
     flex: 1,
-    paddingHorizontal: 20,
+
   },
   ContainerMenu: {
     backgroundColor: '#7159c1',
@@ -102,8 +102,9 @@ const styles = StyleSheet.create({
   },
 
   SegimentoHeader: {
-    height: 135,
+    height: 90,
     backgroundColor: '#fff',
+    flexDirection: 'row',
   },
   DestaquesView: {
     height: 170,
@@ -113,6 +114,51 @@ const styles = StyleSheet.create({
     height: 140,
     backgroundColor: '#fff'
   },
+  Rodizio: {
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 70,
+    marginLeft: 22,
+    backgroundColor: '#d1cce6',
+    borderRadius: 10,
+  },
+  textRodizio: {
+    fontWeight: 'bold',
+    color: '#333336'
+  },
+  AlaCarte: {
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 70,
+    marginLeft: 10,
+    backgroundColor: '#d1cce6',
+    borderRadius: 10,
+  },
+  Balada: {
+    fontWeight: 'bold',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: 100,
+    height: 70,
+    marginLeft: 10,
+    backgroundColor: '#d1cce6',
+    borderRadius: 10,
+  },
+  viewhr: {
+    backgroundColor: '#fff',
+    opacity:50,
+  },
+  hr: {
+    marginLeft: 16,
+    marginTop:10,
+
+  },
+
+  
 
 });
 
@@ -133,67 +179,46 @@ export default class Home extends Component {
   render() {
     return (
 
-      < View style={styles.Container} >
-
-
-      <View>
-
-
-        <View style={styles.ContainerMenu} >
-          <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-          <Text style={styles.TextoHeader}>Bem vindo a FreedAPP</Text>
-          <Icon name="qrcode" size={33} style={styles.qrCode} />
-        </View>
-
-
-
-        <View>
-
-          <SearchBar
-            placeholder="Busque por restaurante"
-            platform="android"
-          />
-
-        </View>
-
-      </View>
-
-
-     <View>
+      < SafeAreaView style={styles.Container} >
 
         <ScrollView>
 
+          <View style={styles.ContainerMenu} >
+            <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
+            <Text style={styles.TextoHeader}>Bem vindo a FreedAPP</Text>
+            <Icon name="qrcode" size={33} style={styles.qrCode} />
+          </View>
 
-          <View style={styles.SegimentoHeader}>
 
-            <FlatList
-              horizontal
-              data={this.state.SegimentoFreed}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item: rowData }) => {
-                return (
-                  <Card
-                    title={null}
-                    image={{ uri: rowData.imageUrl }}
-                    style={styles.Card}
-                    containerStyle={{ height: 20, width: 90 }}
-                    imageStyle={{ height: 90, width: 90 }}
+          <View>
 
-                  >
-                    <Text style={{ textAlign: "center" }}>
-                      {rowData.title}
-                    </Text>
-                  </Card>
-                );
-              }}
-              keyExtractor={(item, index) => index}
+            <SearchBar
+              placeholder="Busque por restaurante"
+              platform="android"
             />
-
 
           </View>
 
 
 
+
+          <View style={styles.SegimentoHeader}>
+            <View style={styles.Rodizio}>
+
+              <Text style={styles.textRodizio}>Rodizio</Text>
+
+            </View>
+            <View style={styles.AlaCarte}>
+
+              <Text style={styles.textRodizio}>A la Carte</Text>
+
+            </View>
+            <View style={styles.Balada}>
+
+              <Text style={styles.textRodizio}>Balada</Text>
+
+            </View>
+          </View>
 
 
 
@@ -221,6 +246,16 @@ export default class Home extends Component {
 
 
 
+
+
+          <View style={styles.viewhr}>
+            <Text style={styles.hr}> ────────────────────────────────</Text>
+          </View>
+
+
+
+
+
           <View style={styles.BaseMedium}>
 
             <FlatList
@@ -248,94 +283,13 @@ export default class Home extends Component {
 
 
           </View>
-          <View style={styles.BaseMedium}>
-
-            <FlatList
-              horizontal
-              data={this.state.especialidade}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item: rowData }) => {
-                return (
-                  <Card
-                    title={null}
-                    image={{ uri: rowData.imageUrl }}
-                    style={styles.Card}
-                    containerStyle={{ height: 20, width: 90 }}
-                    imageStyle={{ height: 90, width: 90 }}
-
-                  >
-                    <Text style={{ textAlign: "center" }}>
-                      {rowData.title}
-                    </Text>
-                  </Card>
-                );
-              }}
-              keyExtractor={(item, index) => index}
-            />
 
 
-          </View>
-          <View style={styles.BaseMedium}>
 
-            <FlatList
-              horizontal
-              data={this.state.especialidade}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item: rowData }) => {
-                return (
-                  <Card
-                    title={null}
-                    image={{ uri: rowData.imageUrl }}
-                    style={styles.Card}
-                    containerStyle={{ height: 20, width: 90 }}
-                    imageStyle={{ height: 90, width: 90 }}
-
-                  >
-                    <Text style={{ textAlign: "center" }}>
-                      {rowData.title}
-                    </Text>
-                  </Card>
-                );
-              }}
-              keyExtractor={(item, index) => index}
-            />
-
-
-          </View>
-          <View style={styles.BaseMedium}>
-
-            <FlatList
-              horizontal
-              data={this.state.especialidade}
-              showsHorizontalScrollIndicator={false}
-              renderItem={({ item: rowData }) => {
-                return (
-                  <Card
-                    title={null}
-                    image={{ uri: rowData.imageUrl }}
-                    style={styles.Card}
-                    containerStyle={{ height: 20, width: 90 }}
-                    imageStyle={{ height: 90, width: 90 }}
-
-                  >
-                    <Text style={{ textAlign: "center" }}>
-                      {rowData.title}
-                    </Text>
-                  </Card>
-                );
-              }}
-              keyExtractor={(item, index) => index}
-            />
-
-
-          </View>
 
         </ScrollView>
-        </View>
 
-
-      </View >
-
+      </ SafeAreaView>
 
 
     );
