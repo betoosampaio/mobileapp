@@ -1,9 +1,9 @@
 import React from 'react';
 import { createMaterialBottomTabNavigator } from 'react-navigation-material-bottom-tabs';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Inicio from '../home/pages/Inicio';
-import Buscar from  '../home/pages/Buscar';
-import Perfil from  '../home/pages/Perfil';
+import Inicio from './pages/Inicio/Inicio';
+import Buscar from  './pages/Buscar/Buscar';
+import Perfil from  './pages/Perfil/Perfil';
 
 
 

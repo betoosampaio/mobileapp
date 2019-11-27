@@ -5,7 +5,7 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 
 //Pages Home
-import Home from './views/home/Home';
+import Home from './views/home/home'
 
 
 
