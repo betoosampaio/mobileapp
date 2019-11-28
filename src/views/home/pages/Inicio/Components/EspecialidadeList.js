@@ -1,9 +1,6 @@
 import React, { Component } from "react";
-import { Text, SafeAreaView, View, StyleSheet, StatusBar, FlatList, ScrollView } from 'react-native'
-import { SearchBar } from 'react-native-elements';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import { Text, View, StyleSheet, FlatList, } from 'react-native'
 import { Card } from "react-native-elements";
-import CardView from 'react-native-cardview'
 
 
 const Especialidade = [
@@ -33,7 +30,6 @@ const Especialidade = [
     }
 ];
 
-
 const styles = StyleSheet.create({
     BaseMedium: {
         height: 200,
@@ -52,9 +48,6 @@ const styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
 });
-
-
-
 
 
 export default class EspecialidadeList extends Component {
