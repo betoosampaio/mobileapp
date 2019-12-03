@@ -101,10 +101,9 @@ const styles = StyleSheet.create({
     marginTop: 20,
     flexDirection: 'row',
     marginVertical: 8,
-
     alignItems: 'center',
     borderRadius: 4,
-    borderWidth: 1.2,
+    
     paddingLeft: 10,
     borderColor: '#d6d7da',
   },
@@ -115,7 +114,6 @@ const styles = StyleSheet.create({
 
   },
   textoDestaque: {
-    marginTop: 10,
     color: '#000',
     marginLeft: 10,
     fontSize: 20,
@@ -133,9 +131,9 @@ const styles = StyleSheet.create({
     color: '#000',
     fontSize: 13,
   },
-valorMedio:{
-  color: '#1212'
-}
+  valorMedio: {
+    color: '#1212'
+  }
 
 });
 

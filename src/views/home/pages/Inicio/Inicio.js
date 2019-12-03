@@ -75,10 +75,7 @@ export default class Home extends Component {
           <DestaquesList />
 
 
-          <View style={styles.viewhr}>
-            <Text style={styles.hr}> ────────────────────────────────</Text>
-          </View>
-
+       
 
           <EspecialidadeList />
 

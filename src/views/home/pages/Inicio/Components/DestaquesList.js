@@ -24,6 +24,7 @@ const DestaquesFreed = [
 
 const styles = StyleSheet.create({
     DestaquesView: {
+        marginBottom:20,
         backgroundColor: '#fff',
         height: 170,
     },

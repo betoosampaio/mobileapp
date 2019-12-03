@@ -89,9 +89,7 @@ export default class EspecialidadeList extends Component {
                 />
 
 
-                <View style={styles.viewhr}>
-                    <Text style={styles.hr2}> ────────────────────────────────</Text>
-                </View>
+            
             </View>
 
 

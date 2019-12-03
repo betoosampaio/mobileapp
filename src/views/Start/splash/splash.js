@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Dimensions, StatusBar } from 'react-native';
-import logo from '../../assets/img/logo.png'
+import logo from '../../../assets/img/logo.png'
 
 class SplashScreen extends React.Component {
 
