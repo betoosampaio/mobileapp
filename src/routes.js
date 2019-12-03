@@ -3,10 +3,10 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation';
 
 
 
-import Splash from './views/Start/splash/splash'
-import Login from './views/Start/login/login';
-import Registrar from './views/Start/registrar/registrar';
-import Home from './views/home/home';
+import Splash from './views/start/splash/Splash'
+import Login from './views/start/login/Login';
+import Registrar from './views/start/registrar/Registrar';
+import Home from './views/home/Home';
 
 
 
