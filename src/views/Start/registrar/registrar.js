@@ -73,16 +73,65 @@ const styles = StyleSheet.create({
     marginLeft: 285,
   },
 });
+
+
+
+
+
+
+
 export default class Registrar extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      nomeUsuario: '',
-      cpfUsuario: '',
+      nome: '',
+      cpf: '',
       telefone: '',
       email: '',
       senha: '',
     };
+  }
+  checkInputEmail(email) {
+    this.setState({ email })
+  }
+  checkInputSenha(senha) {
+    this.setState({ senha })
+  }
+  checkInputCPF(cpf) {
+    this.setState({ cpf })
+  }
+  checkInputNome(nome) {
+    this.setState({ nome })
+  }
+  checkInputTelefone(telefone) {
+    this.setState({ telefone })
+  }
+
+
+
+  Cadastrar = () => {
+
+    let res = fetch('http://192.168.0.12:3333/user/cadastro', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    })
+
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson == 'ok') {
+          alert("Successfully Login");
+          console.log('ok')
+        } else {
+          alert("Usuário invalido");
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   }
 
   render() {
@@ -103,11 +152,15 @@ export default class Registrar extends Component {
 
           <Text style={styles.informacao}>Nome:</Text>
           <TextInput
+            onChangeText={(nome) => this.checkInputNome(nome)}
             style={styles.input}
             placeholder="Qual é o seu nome ?"
+            value={this.state.nome}
           />
           <Text style={styles.informacaocpf}>CPF:</Text>
           <TextInputMask
+            onChangeText={(cpf) => this.checkInputCPF(cpf)}
+            value={this.state.cpf}
             style={styles.input}
             placeholder="Qual é o seu CPF ?"
             keyboardType={'numeric'}
@@ -115,37 +168,32 @@ export default class Registrar extends Component {
           />
           <Text style={styles.informacaotel}>Telefone:</Text>
           <TextInputMask
+            onChangeText={(telefone) => this.checkInputTelefone(telefone)}
+            value={this.state.telefone}
             style={styles.input}
             placeholder="E o seu Telefone?"
             keyboardType={'numeric'}
-            mask={"([00]) [00000]-[0000]"}
+            mask={"[00000]"}
           />
           <Text style={styles.informacao}>E-mail:</Text>
           <TextInput
+            onChangeText={(email) => this.checkInputEmail(email)}
             style={styles.input}
+            value={this.state.email}
             placeholder="Insira o Seu E-mail"
           />
           <Text style={styles.informacao}>Senha:</Text>
 
-          <View>
-
-            <TextInput
-              style={styles.inputpass}
-              placeholder="Insira o Seu E-Senha"
-            >
-
-              <Icon name="eye" size={20} style={styles.eye} />
-            </TextInput>
+          <TextInput
+            onChangeText={(senha) => this.checkInputSenha(senha)}
+            style={styles.input}
+            value={this.state.senha}
+            placeholder="Insira o Seu E-mail"
+          />
 
 
 
-
-
-          </View>
-
-
-
-          <TouchableOpacity style={styles.button}>
+          <TouchableOpacity style={styles.button} onPress={this.Cadastrar}>
             <Text style={styles.buttonText}>Registrar</Text>
           </TouchableOpacity>
 

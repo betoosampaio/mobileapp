@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from "react";
 import {
   Image, Text, ScrollView, StyleSheet, Dimensions, ImageBackground, StatusBar, TouchableOpacity, Alert, View, ErrorMessage
 } from 'react-native';
@@ -9,7 +9,7 @@ import facebook from '../../../assets/img/icons/facebook.png'
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 import { TextInput } from 'react-native-gesture-handler';
-
+import { StackNavigator } from 'react-navigation';
 
 
 const styles = StyleSheet.create({
@@ -139,39 +139,57 @@ const styles = StyleSheet.create({
 });
 
 
-class HomeScreen extends React.Component {
+export default class Login extends Component {
+
+
   constructor(props) {
     super(props);
     this.state = {
       email: '',
       senha: '',
-      correct: true,
     };
   }
 
   checkInputEmail(email) {
     this.setState({ email })
-
-    if (!email.includes('@')) {
-      this.setState({ correct: false })
-    }
-    else {
-      this.setState({ correct: true })
-    }
   }
   checkInputSenha(senha) {
     this.setState({ senha })
-
-    if (senha.length < 8) {
-      this.setState({ correct: false })
-    }
-    else {
-      this.setState({ correct: true })
-    }
   }
 
+
+
+
+  logar = () =>{
+    
+   let res =  fetch('http://192.168.0.12:3333/user/login', {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(this.state),
+    })
+
+    .then((response) => response.json())
+    .then((responseJson)=>{
+      if(responseJson == 'ok'){
+        alert("Successfully Login");
+        this.props.navigation.navigate('Details')
+      }else{
+        alert("Usuário invalido");
+      }
+    })
+    .catch((error)=>{
+    console.error(error);
+    });
+   }
+  
+
+
+
   render() {
-    const isCorrect = this.state.correct;
+
     return (
       <ImageBackground
         source={{
@@ -192,7 +210,7 @@ class HomeScreen extends React.Component {
 
         <TextInput
           placeholder="Insira o Seu E-mail"
-          style={{ backgroundColor: 'white', borderRadius: 5, marginBottom: 10, width: 300, borderWidth: 1, borderColor: isCorrect ? 'green' : 'red' }}
+          style={{ backgroundColor: 'white', borderRadius: 5, marginBottom: 10, width: 300, borderWidth: 1, }}
           placeholderTextColor="#424242"
           onChangeText={(email) => this.checkInputEmail(email)}
           value={this.state.email}
@@ -203,14 +221,14 @@ class HomeScreen extends React.Component {
 
         <TextInput
           placeholder="Insira o Sua Senha"
-          style={{ backgroundColor: 'white', borderRadius: 5, width: 300, marginBottom: 10, borderWidth: 1, borderColor: isCorrect ? 'green' : 'red' }}
+          style={{ backgroundColor: 'white', borderRadius: 5, width: 300, marginBottom: 10, borderWidth: 1, }}
           placeholderTextColor="#424242"
           onChangeText={(senha) => this.checkInputSenha(senha)}
           value={this.state.senha}
         />
 
 
-        <TouchableOpacity style={styles.button} onPress={() => this.props.navigation.navigate('Details')}  >
+        <TouchableOpacity style={styles.button} onPress={this.logar}  >
           <Text style={styles.buttonText} >Logar</Text>
         </TouchableOpacity>
 
@@ -225,7 +243,7 @@ class HomeScreen extends React.Component {
           />
         </View>
 
-        <Text style={styles.cadastrar1}>Ainda não é cadastrado?   <Text style={styles.cadastrar2} onPress={() => this.props.navigation.navigate('DetailsScreen')} >Clique Aqui</Text> </Text>
+        <Text style={styles.cadastrar1}>Ainda não é cadastrado?   <Text style={styles.cadastrar2} onPress={() => this.props.navigation.navigate('Registrar')} >Clique Aqui</Text> </Text>
 
 
 
@@ -234,110 +252,3 @@ class HomeScreen extends React.Component {
     );
   }
 }
-
-class DetailsScreen extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      nomeUsuario: '',
-      cpfUsuario: '',
-      telefone: '',
-      email: '',
-      senha: '',
-    };
-  }
-
-  render() {
-    return (
-
-      <ScrollView>
-        <ImageBackground
-          source={{
-            uri: 'https://www.colorhexa.com/7159c1.png',
-          }}
-          style={styles.container}
-          resizeMode="cover"
-        >
-          <StatusBar barStyle="light-content" backgroundColor="#7159c1" />
-
-
-          <Text style={styles.cadastrar3}>Cadastrar</Text>
-
-          <Text style={styles.informacaos}>Nome:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Qual é o seu nome ?"
-          />
-          <Text style={styles.informacaocpf}>CPF:</Text>
-          <TextInputMask
-            style={styles.input}
-            placeholder="Qual é o seu CPF ?"
-            keyboardType={'numeric'}
-            mask={"[000].[000].[000]-[00]"}
-          />
-          <Text style={styles.informacaotel}>Telefone:</Text>
-          <TextInputMask
-            style={styles.input}
-            placeholder="E o seu Telefone?"
-            keyboardType={'numeric'}
-            mask={"([00]) [00000]-[0000]"}
-          />
-          <Text style={styles.informacaos}>E-mail:</Text>
-          <TextInput
-            style={styles.input}
-            placeholder="Insira o Seu E-mail"
-          />
-          <Text style={styles.informacaos}>Senha:</Text>
-
-          <View>
-
-            <TextInput
-              style={styles.inputpass}
-              placeholder="Insira o Seu E-Senha"
-            >
-
-              <Icon name="eye" size={20} style={styles.eye} />
-            </TextInput>
-
-
-
-
-
-          </View>
-
-
-
-          <TouchableOpacity style={styles.button}>
-            <Text style={styles.buttonText}>Registrar</Text>
-          </TouchableOpacity>
-
-
-
-
-
-        </ImageBackground>
-      </ScrollView>
-    );
-  }
-}
-
-const RootStack = createStackNavigator({
-  Home: {
-    screen: HomeScreen,
-    navigationOptions: () => ({
-      headerTransparent: true,
-    }),
-  },
-
-
-
-    Details: {
-      screen: DetailsScreen,
-      navigationOptions: () => ({
-        headerTransparent: true,
-      }),
-    },
-
-});
-
-export default createAppContainer(RootStack);
