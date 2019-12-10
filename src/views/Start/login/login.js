@@ -174,10 +174,25 @@ export default class Login extends Component {
     .then((response) => response.json())
     .then((responseJson)=>{
       if(responseJson == 'ok'){
-        alert("Successfully Login");
-        this.props.navigation.navigate('Details')
+        Alert.alert(
+          'Atenção',
+          'Login Realizado Com sucesso',
+        );
+        this.props.navigation.navigate('Home')
       }else{
-        alert("Usuário invalido");
+       
+        Alert.alert(
+          'Atenção',
+          'Usuário Invalido',
+          [          
+            {
+              text: 'Tentar Novamente',
+              onPress: () => console.log('Cancel Pressed'),
+              style: 'cancel',
+            },
+          ],
+        );
+        
       }
     })
     .catch((error)=>{
